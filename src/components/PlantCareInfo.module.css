@@ -1,0 +1,23 @@
+.wrapper {
+  width: fit-content;
+  min-width: 180px;
+}
+
+.wrapper p {
+  line-height: 22px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.subTitle {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+  margin-left: 60px;
+}

@@ -1,0 +1,96 @@
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.imageContainer img {
+  object-fit: cover;
+}
+
+.generalInfo {
+  color: #565151;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid #94c973;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 4px 20px 4px 60px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.name_info {
+  height: 60px;
+  width: 200px;
+  margin-left: 10px;
+}
+.bigFont {
+  color: #2c6e49;
+  line-height: 28px;
+  font-size: 24px;
+  width: max-content;
+  max-width: 300px;
+  font-weight: 700;
+}
+.smallFont {
+  font-size: 14px;
+  width: max-content;
+  color: rgb(86, 81, 81);
+}
+.desc {
+  font-size: 16px;
+  line-height: 19px;
+  text-align: justify;
+  margin: 16px 16px 40px 10px;
+  color: rgb(86, 81, 81);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.flexColumn {
+  background: #f4f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.innerFlex {
+  display: flex;
+}
+.hardinessTitle {
+  /* font-family: "Lora", serif; */
+  font-size: 2rem;
+  margin: 20px 0 15px 0;
+  border-bottom: 2px solid #94c973;
+  padding-bottom: 5px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.greenText {
+  color: #2c6e49;
+}
+.borderBox {
+  border: 1px solid #94c973;
+  height: max-content;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 4px;
+}
+
+/* For screens smaller than 768px (typical mobile) */
+@media (max-width: 768px) {
+  .generalInfo {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}
