@@ -3,11 +3,8 @@
 import styles from "@/components/PlantSearchResults.module.css";
 import { useFavorites } from "@/context/FavouritesContext";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 export default function FavoritesPage() {
-  const searchParams = useSearchParams();
-  const q = searchParams.get("q");
   const { favorites, toggleFavorite } = useFavorites();
 
   return (
@@ -19,11 +16,7 @@ export default function FavoritesPage() {
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           {favorites?.map((plant) => (
             <div key={plant.id} className={styles.card}>
-              <Link
-                href={`/plant/${plant.id}${
-                  q ? `?q=${encodeURIComponent(q)}` : ""
-                }`}
-              >
+              <Link href={`/plant/${plant.id}`}>
                 <div className={styles.imageWrapper}>
                   <img
                     src={plant.default_image.thumbnail}
