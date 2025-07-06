@@ -9,15 +9,15 @@ interface FeaturedPlantProps {
 
 const contentStyle: React.CSSProperties = {
   margin: 0,
-  height: "500px",
-  color: "#fff",
+  height: "550px",
+  color: "#595959",
   lineHeight: "24px",
   textAlign: "center",
-  background: "#58754c",
+  background: "#f6ffed",
 };
 
 const imageStyle: React.CSSProperties = {
-  maxHeight: "410px",
+  maxHeight: "450px",
   width: "100%",
   objectFit: "cover",
   margin: "0 auto",
@@ -35,7 +35,7 @@ export default function FeaturedPlant(data: FeaturedPlantProps) {
   };
   if (!data || data.data.length === 0) return null;
   return (
-    <Carousel autoplay arrows>
+    <Carousel dots={false} autoplay arrows>
       {data?.data.slice(0, 3).map((plant: any, index: number) => (
         <div key={index}>
           <div style={contentStyle}>
@@ -46,7 +46,11 @@ export default function FeaturedPlant(data: FeaturedPlantProps) {
             />
             <Tooltip title="Click for more detail">
               <div
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  width: "max-content",
+                  margin: "0 auto",
+                }}
                 onClick={() => handleOnDetalPage(plant.id)}
               >
                 <h3 style={{ marginTop: "1rem" }}>{plant?.common_name}</h3>

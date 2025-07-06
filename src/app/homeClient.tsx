@@ -102,12 +102,12 @@ export default function HomeClient() {
     <main>
       {error && <div style={{ textAlign: "center" }}>{error}</div>}
       {!loading && !query && (
-        <div style={{ height: "60vh" }}>
+        <div style={{ height: "50vh" }}>
           <FeaturedPlant data={featuredPlants} />
           <div
             style={{
               height: "100%",
-              padding: "4rem 2rem",
+              padding: "1rem",
               textAlign: "center",
               backgroundColor: "#f6ffed", // soft green tint
               borderRadius: "12px",

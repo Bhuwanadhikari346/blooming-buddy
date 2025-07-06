@@ -49,6 +49,18 @@ ol {
   padding: 0;
 }
 
+/* styles/carousel.css */
+.slick-prev,
+.slick-next {
+  color: red !important; /* change arrow color */
+  z-index: 1;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  color: red !important; /* if you're seeing default white arrows */
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
