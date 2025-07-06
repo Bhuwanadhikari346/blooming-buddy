@@ -18,18 +18,7 @@ export default function HomeClient() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const speciesOfPlants = [
-    "pineapple",
-    "apple",
-    "kiwi",
-    "marigold",
-    "rose",
-    "cactus",
-    "banana",
-    "grape",
-    "tulip",
-    "fern",
-  ];
+  const speciesOfPlants = ["pineapple", "kiwi", "lily", "tulip", "fern"];
 
   //   const handleSearch = (query: string) => {
   //   router.push(`/?q=${encodeURIComponent(query)}`);
