@@ -61,6 +61,12 @@ ol {
   color: red !important; /* if you're seeing default white arrows */
 }
 
+@media (max-width: 768px) {
+  .search-bar input {
+    width: 180px !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -18,10 +18,12 @@ const contentStyle: React.CSSProperties = {
 
 const imageStyle: React.CSSProperties = {
   maxHeight: "450px",
+  minHeight: "450px",
   width: "100%",
   objectFit: "cover",
   margin: "0 auto",
   display: "block",
+  padding: "1rem 2rem 0 2rem",
 };
 
 export default function FeaturedPlant(data: FeaturedPlantProps) {

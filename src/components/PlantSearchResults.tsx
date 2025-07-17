@@ -2,6 +2,7 @@
 
 import styles from "@/components/PlantSearchResults.module.css";
 import { useFavorites } from "@/context/FavouritesContext";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -39,12 +40,22 @@ export default function PlantSearchResults({ data }: PlantSearchResultsProps) {
               </p>
             </div>
           </Link>
-          <Tooltip title="Your Favourites">
+          <Tooltip
+            title={
+              isFavorite(plant.id)
+                ? "Remove from Favourites"
+                : "Add to Favourites"
+            }
+          >
             <button
               className={styles.onHover}
               onClick={() => toggleFavorite(plant)}
             >
-              {isFavorite(plant.id) ? "❤️" : "🤎"}
+              {isFavorite(plant.id) ? (
+                <HeartFilled style={{ color: "green" }} />
+              ) : (
+                <HeartOutlined style={{ color: "green" }} />
+              )}
             </button>
           </Tooltip>
         </div>

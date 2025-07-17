@@ -150,8 +150,8 @@ export default function HomeClient() {
           {!query && (
             <Tooltip title="Your Favourites">
               <FloatButton
-                icon={<HeartOutlined />}
-                type="primary"
+                icon={<HeartOutlined style={{ color: "red" }} />}
+                type="default"
                 style={{ right: 24, bottom: 24 }}
                 onClick={handleGoToFavourite}
               />
