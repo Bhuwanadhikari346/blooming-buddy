@@ -13,7 +13,15 @@ export default function FavoritesPage() {
       {favorites.length === 0 ? (
         <p style={{ textAlign: "center" }}>No favourites added yet.</p>
       ) : (
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <div
+          style={{
+            marginTop: "1rem",
+            display: "flex",
+            justifyContent: "center",
+            gap: "1rem",
+            flexWrap: "wrap",
+          }}
+        >
           {favorites?.map((plant) => (
             <div key={plant.id} className={styles.card}>
               <Link href={`/plant/${plant.id}`}>
