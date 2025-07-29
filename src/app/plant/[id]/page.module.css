@@ -55,6 +55,10 @@
   flex-wrap: wrap;
 }
 
+.nowrap {
+  flex-wrap: nowrap !important;
+}
+
 .flexColumn {
   background: #f4f7f7;
   display: flex;
@@ -87,11 +91,8 @@
 }
 
 /* For screens smaller than 768px (typical mobile) */
-@media (max-width: 768px) {
+@media (max-width: 906px) {
   .generalInfo {
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+    display: none;
   }
 }

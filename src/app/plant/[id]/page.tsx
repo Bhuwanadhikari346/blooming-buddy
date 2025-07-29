@@ -41,7 +41,7 @@ export default async function PlantDetail({
           height={500}
         />
       </div>
-      <div className={styles.flex}>
+      <div className={`${styles.flex} ${styles.nowrap}`}>
         <div className={styles.name_info}>
           <p className={styles.bigFont}>{plantDetailData?.common_name}</p>
           <p className={styles.smallFont}>{plantDetailData?.scientific_name}</p>
