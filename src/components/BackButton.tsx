@@ -1,5 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 export default function BackButton() {
   const router = useRouter();
@@ -12,19 +13,19 @@ export default function BackButton() {
 
   return (
     <button
+      className="btn btn-secondary"
       style={{
-        backgroundColor: "#2c6e49",
-        color: "white",
-        padding: "8px",
-        border: "none",
-        borderRadius: "5px",
-        marginTop: "1rem",
-        marginBottom: "1rem",
-        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        gap: "0.5rem",
+        margin: "2rem auto 1rem auto",
+        fontSize: "1rem",
+        padding: "0.75rem 1.5rem",
       }}
       onClick={goBack}
     >
-      ← Back
+      <ArrowLeftOutlined /> 
+      Back to {q ? 'Search Results' : 'Home'}
     </button>
   );
 }

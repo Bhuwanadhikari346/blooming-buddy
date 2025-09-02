@@ -24,69 +24,40 @@ export default function PlantSearch({ onSearch, onClear }: PlantSearchProps) {
       onSearch(trimmed);
     }
   };
+
   const handleClear = () => {
     setQuery("");
     onClear();
   };
+
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "1rem",
-          marginBottom: "2rem",
-        }}
-      >
-        <div className="search-bar" style={{ marginRight: 10 }}>
+    <div className="search-container">
+      <form className="search-form" onSubmit={handleSubmit}>
+        <div className="search-input-wrapper">
           <input
             type="text"
-            style={{
-              padding: 8,
-              border: "1px solid #2c6e49",
-              borderRadius: "5px",
-              width: "350px",
-            }}
-            placeholder="Search plants..."
+            className="input"
+            placeholder="Search for plants, flowers, herbs..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            autoComplete="off"
           />
         </div>
-        <div className="btn-btn">
+        <div className="search-buttons">
           {query && (
             <button
-              style={{
-                backgroundColor: "#564b36",
-                color: "white",
-                padding: "8px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-                marginRight: 10,
-              }}
+              className="btn btn-secondary"
               onClick={handleClear}
-              type="reset"
+              type="button"
             >
-              Cancel
+              Clear
             </button>
           )}
-          <button
-            style={{
-              backgroundColor: "#389e0d",
-              color: "white",
-              padding: "8px",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              marginRight: 10,
-            }}
-            type="submit"
-          >
-            Search
+          <button className="btn btn-primary" type="submit" disabled={!query.trim()}>
+            🔍 Search
           </button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }

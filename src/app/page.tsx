@@ -6,9 +6,9 @@ export default function Page() {
   return (
     <Suspense
       fallback={
-        <div style={{ display: "flex", gap: "1rem", padding: "2rem" }}>
+        <div className="skeleton-container">
           {[1, 2, 3, 4, 5].map((_, index) => (
-            <Card key={index} style={{ width: 250 }}>
+            <Card key={index} className="skeleton-card">
               <Skeleton active paragraph={{ rows: 3 }} />
             </Card>
           ))}

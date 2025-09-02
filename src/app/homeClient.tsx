@@ -99,76 +99,149 @@ export default function HomeClient() {
   }, [query]);
 
   return (
-    <main>
-      {error && <div style={{ textAlign: "center" }}>{error}</div>}
+    <main className="container">
+      {error && (
+        <div style={{ 
+          textAlign: "center", 
+          padding: "2rem",
+          background: "#fff2f0",
+          border: "1px solid #ffccc7",
+          borderRadius: "var(--border-radius)",
+          color: "#a8071a",
+          margin: "1rem 0"
+        }}>
+          <h3>⚠️ {error}</h3>
+          <p>Please try again or check your internet connection.</p>
+        </div>
+      )}
+      
       {!loading && !query && (
-        <div style={{ height: "50vh" }}>
+        <div style={{ minHeight: "60vh" }}>
           <FeaturedPlant data={featuredPlants} />
           <div
             style={{
-              height: "100%",
-              padding: "1rem",
+              padding: "3rem 2rem",
               textAlign: "center",
-              backgroundColor: "#f6ffed", // soft green tint
-              borderRadius: "12px",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
-              margin: "0 auto",
+              background: "linear-gradient(135deg, var(--secondary-green), #f0f9ff)",
+              borderRadius: "var(--border-radius)",
+              boxShadow: "var(--shadow-medium)",
+              margin: "2rem 0",
+              position: "relative",
+              overflow: "hidden"
             }}
           >
-            <h2
+            <div
               style={{
-                fontSize: "2rem",
-                color: "#389e0d", // deep green
-                fontWeight: "600",
-                marginBottom: "0.5rem",
+                position: "absolute",
+                top: "-50px",
+                right: "-50px",
+                width: "200px",
+                height: "200px",
+                background: "linear-gradient(45deg, var(--primary-green), transparent)",
+                borderRadius: "50%",
+                opacity: 0.1,
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                bottom: "-30px",
+                left: "-30px",
+                width: "150px",
+                height: "150px",
+                background: "linear-gradient(45deg, var(--accent-green), transparent)",
+                borderRadius: "50%",
+                opacity: 0.1,
+              }}
+            />
+            <h1
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 3rem)",
+                color: "var(--accent-green)",
+                fontWeight: "700",
+                marginBottom: "1rem",
+                lineHeight: "1.2",
+                position: "relative",
+                zIndex: 1,
               }}
             >
-              Get to know your favourite plants — better than ever.
-            </h2>
+              🌿 Discover Your Plant Paradise
+            </h1>
             <p
               style={{
-                fontSize: "1rem",
-                color: "#595959",
+                fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
+                color: "var(--text-muted)",
+                marginBottom: "2rem",
+                maxWidth: "600px",
+                margin: "0 auto 2rem auto",
+                lineHeight: "1.6",
+                position: "relative",
+                zIndex: 1,
               }}
             >
-              Discover care tips, sunlight needs, and more — all in one place.
+              Get expert care tips, sunlight requirements, and everything you need to help your plants thrive.
             </p>
             <PlantSearch onSearch={handleSearch} onClear={handleClear} />
           </div>
         </div>
       )}
-      {loading ? (
-        <div style={{ display: "flex", gap: "1rem", padding: "2rem" }}>
+      
+      {loading && (
+        <div className="skeleton-container">
           {[1, 2, 3, 4, 5].map((_, index) => (
-            <Card key={index} style={{ width: 250 }}>
+            <Card key={index} className="skeleton-card">
               <Skeleton active paragraph={{ rows: 3 }} />
             </Card>
           ))}
         </div>
-      ) : (
+      )}
+      
+      {!loading && (
         <>
           {!query && (
-            <Tooltip title="Your Favourites">
+            <Tooltip title="View Your Favourite Plants" placement="left">
               <FloatButton
-                icon={<HeartOutlined style={{ color: "red" }} />}
-                type="default"
-                style={{ right: 24, bottom: 24 }}
+                icon={<HeartOutlined style={{ color: "#ff4d4f", fontSize: "20px" }} />}
+                type="primary"
+                style={{ 
+                  right: 24, 
+                  bottom: 24,
+                  background: "white",
+                  boxShadow: "var(--shadow-medium)",
+                  border: "2px solid var(--primary-green)"
+                }}
                 onClick={handleGoToFavourite}
               />
             </Tooltip>
           )}
           {query && (
             <>
-              <PlantSearch onSearch={handleSearch} onClear={handleClear} />
+              <div style={{ 
+                background: "var(--light-gray)", 
+                padding: "1rem 2rem", 
+                borderRadius: "var(--border-radius)",
+                margin: "1rem 0 2rem 0",
+                border: "1px solid var(--border-color)"
+              }}>
+                <PlantSearch onSearch={handleSearch} onClear={handleClear} />
+              </div>
               {searchResults?.length === 0 ? (
                 <div
                   style={{
                     textAlign: "center",
-                    color: "#989191",
-                    marginTop: "2rem",
+                    padding: "4rem 2rem",
+                    background: "var(--light-gray)",
+                    borderRadius: "var(--border-radius)",
+                    margin: "2rem 0",
                   }}
                 >
-                  No data Found...
+                  <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🔍</div>
+                  <h3 style={{ color: "var(--text-muted)", marginBottom: "0.5rem" }}>
+                    No plants found
+                  </h3>
+                  <p style={{ color: "var(--text-muted)" }}>
+                    Try searching with different keywords or check your spelling.
+                  </p>
                 </div>
               ) : (
                 <div className="rendered-items">

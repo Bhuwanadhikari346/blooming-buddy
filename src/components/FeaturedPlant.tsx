@@ -9,21 +9,25 @@ interface FeaturedPlantProps {
 
 const contentStyle: React.CSSProperties = {
   margin: 0,
-  height: "550px",
-  color: "#595959",
-  lineHeight: "24px",
+  height: "600px",
+  color: "var(--foreground)",
+  lineHeight: "1.6",
   textAlign: "center",
-  background: "#f6ffed",
+  background: "linear-gradient(135deg, var(--secondary-green), #f0f9ff)",
+  borderRadius: "var(--border-radius)",
+  overflow: "hidden",
+  position: "relative",
 };
 
 const imageStyle: React.CSSProperties = {
-  maxHeight: "450px",
-  minHeight: "450px",
+  height: "450px",
   width: "100%",
   objectFit: "cover",
   margin: "0 auto",
   display: "block",
-  padding: "1rem 2rem 0 2rem",
+  padding: "1.5rem",
+  borderRadius: "var(--border-radius)",
+  transition: "transform 0.3s ease",
 };
 
 export default function FeaturedPlant(data: FeaturedPlantProps) {
@@ -36,32 +40,89 @@ export default function FeaturedPlant(data: FeaturedPlantProps) {
     router.push(`/plant/${id}${query}`);
   };
   if (!data || data.data.length === 0) return null;
+  
   return (
-    <Carousel dots={false} autoplay arrows>
-      {data?.data.slice(0, 3).map((plant: any, index: number) => (
-        <div key={index}>
-          <div style={contentStyle}>
-            <img
-              style={imageStyle}
-              src={plant?.default_image?.original_url}
-              alt={plant?.common_name}
-            />
-            <Tooltip title="Click for more detail">
+    <div style={{ margin: "2rem 0", borderRadius: "var(--border-radius)", overflow: "hidden", boxShadow: "var(--shadow-medium)" }}>
+      <Carousel 
+        dots={true} 
+        autoplay 
+        arrows 
+        effect="fade"
+        autoplaySpeed={4000}
+      >
+        {data?.data.slice(0, 3).map((plant: any, index: number) => (
+          <div key={index}>
+            <div style={contentStyle}>
               <div
                 style={{
-                  cursor: "pointer",
-                  width: "max-content",
-                  margin: "0 auto",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: "linear-gradient(45deg, rgba(82, 196, 26, 0.05), rgba(47, 84, 235, 0.05))",
+                  zIndex: 0,
                 }}
-                onClick={() => handleOnDetalPage(plant.id)}
-              >
-                <h3 style={{ marginTop: "1rem" }}>{plant?.common_name}</h3>
-                <p>{plant?.scientific_name}</p>
-              </div>
-            </Tooltip>
+              />
+              <img
+                style={imageStyle}
+                src={plant?.default_image?.original_url}
+                alt={plant?.common_name}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = "scale(1.02)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
+              />
+              <Tooltip title="Click to learn more about this plant">
+                <div
+                  style={{
+                    cursor: "pointer",
+                    width: "max-content",
+                    margin: "0 auto",
+                    padding: "1rem 2rem",
+                    background: "rgba(255, 255, 255, 0.95)",
+                    borderRadius: "var(--border-radius)",
+                    backdropFilter: "blur(10px)",
+                    boxShadow: "var(--shadow-light)",
+                    border: "1px solid var(--border-color)",
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                  onClick={() => handleOnDetalPage(plant.id)}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = "var(--shadow-medium)";
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "var(--shadow-light)";
+                  }}
+                >
+                  <h3 style={{ 
+                    margin: "0 0 0.5rem 0", 
+                    color: "var(--accent-green)", 
+                    fontSize: "1.5rem",
+                    fontWeight: "700" 
+                  }}>
+                    {plant?.common_name}
+                  </h3>
+                  <p style={{ 
+                    margin: 0, 
+                    color: "var(--text-muted)", 
+                    fontStyle: "italic",
+                    fontSize: "1rem" 
+                  }}>
+                    {plant?.scientific_name}
+                  </p>
+                </div>
+              </Tooltip>
+            </div>
           </div>
-        </div>
-      ))}
-    </Carousel>
+        ))}
+      </Carousel>
+    </div>
   );
 }
